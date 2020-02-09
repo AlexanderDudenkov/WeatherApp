@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     defaultConfig {
@@ -77,4 +78,7 @@ dependencies {
 
     //Timberkt   https://github.com/ajalt/timberkt
     implementation "com.github.ajalt:timberkt:$timberktVersion"
+
+    implementation 'com.google.maps:google-maps-services:0.2.4'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 }

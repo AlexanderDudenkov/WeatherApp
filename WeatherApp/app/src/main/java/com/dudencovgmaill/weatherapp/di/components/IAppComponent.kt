@@ -4,6 +4,7 @@ import android.content.Context
 import com.dudencovgmaill.weatherapp.di.scopes.ApplicationScope
 import com.dudencovgmaill.weatherapp.di.modules.AppModule
 import com.dudencovgmaill.weatherapp.viewmodel.MainFragmentVm
+import com.dudencovgmaill.weatherapp.viewmodel.MapFragmentVm
 import com.dudencovgmaill.weatherapp.viewmodel.ViewModelFactory
 import dagger.BindsInstance
 import dagger.Component
@@ -21,4 +22,5 @@ interface IAppComponent {
     }
 
     fun mainViewModelFactory(): ViewModelFactory<MainFragmentVm>
+    fun mapViewModelFactory(): ViewModelFactory<MapFragmentVm>
 }

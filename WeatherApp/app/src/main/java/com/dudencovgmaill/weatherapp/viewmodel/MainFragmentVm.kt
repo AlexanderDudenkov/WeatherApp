@@ -27,7 +27,10 @@ open class MainFragmentVm @Inject constructor(repo: IRepository) : AMainFragment
         (startMapFragment as MutableLiveData).value = null
         (list as MutableLiveData).value = list.value?.also { (it as ArrayList).clear() }
 
-        getCity("London") { addCityToList(it) }
+        getCity("London") {
+            addCityToList(it)
+            saveCity(it){}
+        }
     }
 
     override fun clickOnItem(pos: Int) {
@@ -58,30 +61,6 @@ open class MainFragmentVm @Inject constructor(repo: IRepository) : AMainFragment
                 }
             }
         }
-    }
-
-    protected open fun getCity(city: String, setListener: (city: City?) -> Unit) {
-        cd.add(
-            repo.remoteRepo.getResponse(city)
-                .observeOn(AndroidSchedulers.mainThread())
-                ?.subscribeOn(Schedulers.io())
-                ?.subscribe({
-                    d { it.toString() }
-                    setListener(it)
-                }, { t -> d { t.message.toString() } })!!
-        )
-    }
-
-    protected open fun getCity(lat: String, lon: String, setListener: (city: City?) -> Unit) {
-        cd.add(
-            repo.remoteRepo.getResponse(lat, lon)
-                .observeOn(AndroidSchedulers.mainThread())
-                ?.subscribeOn(Schedulers.io())
-                ?.subscribe({
-                    d { it.toString() }
-                    setListener(it)
-                }, { t -> d { t.message.toString() } })!!
-        )
     }
 
     protected open fun addCityToList(city: City?, i: Int? = null) {
